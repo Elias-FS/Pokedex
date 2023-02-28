@@ -1,0 +1,88 @@
+.container-card1 {
+  width: 200px;
+  height: 298px;
+  background-color: #da2c33;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.container-card2 {
+  width: 180px;
+  height: 278px;
+  background-color: #f5d789;
+  border-radius: 5px;
+}
+
+.img-pokemon {
+  width: 120px;
+  height: 120px;
+}
+
+.img-type {
+  width: 50px;
+  height: 50px;
+}
+
+.item2 {
+  grid-area: menu;
+  height: 10px;
+}
+
+.item4 {
+  grid-area: right;
+  height: 10px;
+}
+
+.item3 {
+  grid-area: main;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item5 {
+  grid-area: footer;
+  height: 10px;
+}
+
+.item5 h3 {
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+.item5 h4 {
+  font-size: 20px;
+  line-height: 24px;
+  color: #ffffff;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  align-items: right;
+  display: flex;
+  justify-content: right;
+
+}
+
+.grid-container1 {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    "menu empty empty empty empty right"
+    "main main main main main main"
+    "footer footer footer footer footer footer";
+  gap: 10px;
+  padding: 5px;
+}
+
+.grid-container1 > div {
+  text-align: center;
+  font-size: 10px;
+}
