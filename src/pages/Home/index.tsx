@@ -1,29 +1,98 @@
 import "./Home.css";
-import { useState } from "react";
-import { useRecoilState, useRecoilValueLoadable } from "recoil";
+import { useEffect, useMemo, useState } from "react";
+import {
+  useRecoilRefresher_UNSTABLE,
+  useRecoilState,
+  useRecoilValueLoadable,
+  useSetRecoilState,
+} from "recoil";
 
 // Componentes
 import { PokemonPokebola } from "../../components/PokemonPokebola";
 
 // recoil: atoms
-import { atomPokemon } from "../../recoil/atoms";
+import {
+  atomPokemonFetch,
+  atomPokemonList,
+  atomPokemonOffset,
+  atomPokemonSearch,
+} from "../../recoil/atoms";
 
 // recoil: selectors
-import { selectorGetPokemon } from "../../recoil/selectors";
+import {
+  selectorFetchPokemons,
+  selectorGetPokemon,
+  selectorGetPokemons,
+} from "../../recoil/selectors";
 import { PokemonCard } from "../../components/PokemonCard";
 
 // ::
 export const Home = () => {
   // local: states
-  const [searchPokemon, setSearchPokemon] = useState("");
+  const [searchPokemon, setSearchPokemon] = useState<string>("");
+  const [pokemonCount, setPokemonCount] = useState<number>(0);
 
   // recoil: states
-  const [pokemon, setPokemon] = useRecoilState(atomPokemon);
+  const setPokemon = useSetRecoilState(atomPokemonSearch);
+  const setFecthPokemons = useSetRecoilState(atomPokemonFetch);
+  const [pokemonsOffset, setPokemonsOffset] = useRecoilState(atomPokemonOffset);
+  const [pokemonList, setPokemonList] = useRecoilState(atomPokemonList);
+  const retryFethMorePokemon = useRecoilRefresher_UNSTABLE(
+    selectorFetchPokemons
+  );
 
   // recoil: loadable
+  const getLoadablePokemons = useRecoilValueLoadable(selectorGetPokemons);
   const getLoadablePokemon = useRecoilValueLoadable(selectorGetPokemon);
+  const fetchLoadablePokemon = useRecoilValueLoadable(selectorFetchPokemons);
 
-  console.log(getLoadablePokemon?.contents);
+  // memo: states
+  const disabledFetchMorePokemons = useMemo(() => {
+    if (
+      fetchLoadablePokemon.state === "hasError" ||
+      fetchLoadablePokemon.state === "loading" ||
+      getLoadablePokemons.state === "hasError" ||
+      getLoadablePokemons.state === "loading"
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [fetchLoadablePokemon.state, getLoadablePokemons.state]);
+
+  const hasFetchPokemonError = useMemo(() => {
+    if (
+      fetchLoadablePokemon.state === "hasError" ||
+      getLoadablePokemons.state === "hasError"
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [fetchLoadablePokemon.state, getLoadablePokemons.state]);
+
+  useEffect(() => {
+    if (
+      fetchLoadablePokemon.state === "hasValue" &&
+      fetchLoadablePokemon.contents !== undefined
+    ) {
+      setPokemonCount(fetchLoadablePokemon.contents.count)
+      setFecthPokemons(fetchLoadablePokemon.contents.results);
+    }
+  }, [fetchLoadablePokemon.state, fetchLoadablePokemon.contents]);
+
+  useEffect(() => {
+    if (
+      getLoadablePokemons.state === "hasValue" &&
+      getLoadablePokemons.contents !== undefined
+    ) {
+      if (pokemonList.length > 0) {
+        setPokemonList(pokemonList.concat(getLoadablePokemons.contents));
+      } else {
+        setPokemonList(getLoadablePokemons.contents);
+      }
+    }
+  }, [getLoadablePokemons.state, getLoadablePokemons.contents]);
 
   return (
     <>
@@ -37,17 +106,16 @@ export const Home = () => {
       </div>
 
       <div className="topnav">
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#">Link</a>
+        <a href="#">Home</a>
+        <a href="#">Sobre mim</a>
+        <a href="#">Tecnologias utilizadas</a>
       </div>
 
       <div className="row">
         <div className="leftcolumn">
           <div className="card2">
-            <h2>Veja seu pokémon na pokébola</h2>
-            <h5>clique ou passe o mouse na pokébola</h5>
+            <h2>Digite o nome de um pokémon ou seu ID para capturá-lo:</h2>
+            <h5>Clique ou passe o mouse na pokébola para visualizar o pokémon capturado.</h5>
             <input
               className="search-Pokemon"
               type="text"
@@ -55,21 +123,14 @@ export const Home = () => {
             />
             <button onClick={() => setPokemon(searchPokemon)}>Procurar</button>
             {getLoadablePokemon?.state === "loading" && (
-              <div>Carregando...</div>
+              <div>Capturado pokémon...</div>
             )}
             {getLoadablePokemon?.state === "hasValue" &&
               getLoadablePokemon?.contents !== undefined && (
-                <div>
-                  <img
-                    width="50px"
-                    src={
-                      getLoadablePokemon?.contents?.sprites?.versions?.[
-                        "generation-v"
-                      ]?.["black-white"]?.animated?.front_default
-                    }
-                    alt=""
-                  />
-                </div>
+                <>
+                  <p>Pokémon Capturado!!!</p>
+                  <p>Verifique a pokébola!</p>
+                </>
               )}
             <div className="container-pokebola">
               <PokemonPokebola
@@ -115,34 +176,47 @@ export const Home = () => {
             </div>
           </div>
           <div className="card2">
-            <h2>TITLE HEADING</h2>
-            <h5>Title description, Sep 2, 2017</h5>
+            <h2>Lista de Pokémons</h2>
+            <h5>{pokemonCount} Pokémons</h5>
             <div className="container-card">
               <div className="row">
-                <div className="column">
-                  <div className="card3">
-                    <PokemonCard />
+                {pokemonList.map((pokemon) => (
+                  <div className="column">
+                    <div className="card3">
+                      <PokemonCard
+                        id={pokemon.id}
+                        name={pokemon.name}
+                        img={
+                          pokemon.sprites?.other?.dream_world?.front_default ||
+                          pokemon.sprites?.other?.["official-artwork"]
+                            ?.front_default ||
+                          ""
+                        }
+                        type={""}
+                        gif={
+                          pokemon?.sprites?.versions?.["generation-v"]?.[
+                            "black-white"
+                          ]?.animated?.front_default || ""
+                        }
+                        edge={""}
+                        backgroundCard={""}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="column">
-                  <div className="card3">
-                    <PokemonCard />
-                  </div>
-                </div>
-
-                <div className="column">
-                  <div className="card3">
-                    <PokemonCard />
-                  </div>
-                </div>
-
-                <div className="column">
-                  <div className="card3">
-                    <PokemonCard />
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
+            <button
+              disabled={disabledFetchMorePokemons}
+              onClick={() => setPokemonsOffset(pokemonsOffset + 10)}
+            >
+              Carregar mais
+            </button>
+            {hasFetchPokemonError && (
+              <button onClick={() => retryFethMorePokemon()}>
+                Tentar Novamente
+              </button>
+            )}
           </div>
         </div>
       </div>

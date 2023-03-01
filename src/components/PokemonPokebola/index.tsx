@@ -16,11 +16,28 @@ interface pokemon {
   Speed: number;
 }
 
-export const PokemonPokebola: FC<pokemon> = ({ id, name, description, img, gif, type, HP, Attack, Defense, Special_Attack, Special_Defense, Speed }) => {
+export const PokemonPokebola: FC<pokemon> = ({
+  id,
+  name,
+  description,
+  img,
+  gif,
+  type,
+  HP,
+  Attack,
+  Defense,
+  Special_Attack,
+  Special_Defense,
+  Speed,
+}) => {
   return (
     <div className="card">
       <div className="pokebola">
-        <img src={"/img/pokémon_logo.svg.png"} alt="logo_pokemon" className="logo" />
+        <img
+          src={"/img/pokémon_logo.svg.png"}
+          alt="logo_pokemon"
+          className="logo"
+        />
         <div className="line"></div>
         <div className="circle"></div>
         <div className="circle1"></div>
@@ -37,8 +54,7 @@ export const PokemonPokebola: FC<pokemon> = ({ id, name, description, img, gif, 
         <p>Special-Defense: {Special_Defense}</p>
         <p>Speed: {Speed}</p>
         <a href="#">Saiba mais.</a>
-      <p>#{id}</p>
-        
+        <p>#{id}</p>
       </div>
       <img src={img} alt={`pokemon-${img}`} className="pokemon_img" />
     </div>

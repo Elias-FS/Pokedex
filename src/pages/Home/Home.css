@@ -90,7 +90,7 @@
 /* Float four columns side by side */
 .column {
   float: left;
-  width: 25%;
+  width: 12%;
   padding: 0 10px;
 }
 
@@ -110,12 +110,37 @@
   text-align: center;
 }
 
+@media screen and (max-width: 1750px) {
+  .column {
+    width: 20%;
+    display: block;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 1290px) {
+  .column {
+    width: 25%;
+    display: block;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 /* Responsive columns */
 @media screen and (max-width: 990px) {
   .column {
     width: 33%;
     display: block;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -124,6 +149,9 @@
     width: 50%;
     display: block;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -132,6 +160,9 @@
     width: 100%;
     display: block;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
