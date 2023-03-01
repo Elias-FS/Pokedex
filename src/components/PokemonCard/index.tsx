@@ -7,8 +7,8 @@ interface pokemonData {
   img: string;
   type: string;
   gif: string;
-  edge: string;
-  backgroundCard: string;
+  cardEdge: string;
+  cardBackgroundColor: string;
 }
 
 export const PokemonCard: FC<pokemonData> = ({
@@ -17,12 +17,15 @@ export const PokemonCard: FC<pokemonData> = ({
   img,
   type,
   gif,
-  edge,
-  backgroundCard,
+  cardEdge,
+  cardBackgroundColor,
 }) => {
+  const css1 = { backgroundColor: cardEdge }
+  const css2 = { backgroundColor: cardBackgroundColor }
+
   return (
-    <div className="container-card1">
-      <div className="container-card2">
+    <div className="container-card1" style={css1}>
+      <div className="container-card2" style={css2}>
         <div className="grid-container1">
           <div className="item2">
             <img className="img-type" src={gif} alt={`gif-pokemon-${img}`} />

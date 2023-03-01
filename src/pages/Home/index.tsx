@@ -76,7 +76,7 @@ export const Home = () => {
       fetchLoadablePokemon.state === "hasValue" &&
       fetchLoadablePokemon.contents !== undefined
     ) {
-      setPokemonCount(fetchLoadablePokemon.contents.count)
+      setPokemonCount(fetchLoadablePokemon.contents.count);
       setFecthPokemons(fetchLoadablePokemon.contents.results);
     }
   }, [fetchLoadablePokemon.state, fetchLoadablePokemon.contents]);
@@ -93,6 +93,86 @@ export const Home = () => {
       }
     }
   }, [getLoadablePokemons.state, getLoadablePokemons.contents]);
+
+  const pokemonStyle = [
+    {
+      colors: {
+        types: {
+          normal: {
+            edge: "#919AA2",
+            backgroundCard: "#C8CBCD",
+          },
+          fire: {
+            edge: "#DA2C33",
+            backgroundCard: "#F5D789",
+          },
+          water: {
+            edge: "#3692DC",
+            
+
+          },
+          grass: {
+            edge: "#02913A",
+            backgroundCard: "#C8EBBF",
+          },
+          ice: {
+            edge: "#38A3C4",
+            backgroundCard: "#C1E2EC",
+          },
+          fighting: {
+            edge: "#E0306A",
+            backgroundCard: "#E7A8BD",
+          },
+          poison: {
+            edge: "#B15192",
+            backgroundCard: "#CFAAC3",
+          },
+          ground: {
+            edge: "#919AA2",
+            backgroundCard: "#C8CBCD",
+          },
+          flying: {
+            edge: "#648ABC",
+            backgroundCard: "#BBCEE8",
+          },
+          psychic: {
+            edge: "#FF6675",
+            backgroundCard: "#FCD4D8",
+          },
+          bug: {
+            edge: "#A5B614",
+            backgroundCard: "#DDE1BA",
+          },
+          rock: {
+            edge: "#6B6A67",
+            backgroundCard: "#C0BFBC",
+          },
+          ghost: {
+            edge: "#594593",
+            backgroundCard: "#BAB0D7",
+          },
+          dragon: {
+            edge: "#7C6DA4",
+            backgroundCard: "#B4ADC7",
+          },
+          dark: {
+            edge: "#623A26",
+            backgroundCard: "#AA968C",
+          },
+          steel: {
+            edge: "#5A8EA2",
+            backgroundCard: "#C6DDE5",
+          },
+          fairy: {
+            edge: "#FB89EB",
+            backgroundCard: "#FFDBFA",
+          },
+        },
+      },
+    },
+  ];
+
+  console.log(pokemonList);
 
   return (
     <>
@@ -115,7 +195,10 @@ export const Home = () => {
         <div className="leftcolumn">
           <div className="card2">
             <h2>Digite o nome de um pokémon ou seu ID para capturá-lo:</h2>
-            <h5>Clique ou passe o mouse na pokébola para visualizar o pokémon capturado.</h5>
+            <h5>
+              Clique ou passe o mouse na pokébola para visualizar o pokémon
+              capturado.
+            </h5>
             <input
               className="search-Pokemon"
               type="text"
@@ -183,24 +266,70 @@ export const Home = () => {
                 {pokemonList.map((pokemon) => (
                   <div className="column">
                     <div className="card3">
-                      <PokemonCard
-                        id={pokemon.id}
-                        name={pokemon.name}
-                        img={
-                          pokemon.sprites?.other?.dream_world?.front_default ||
-                          pokemon.sprites?.other?.["official-artwork"]
-                            ?.front_default ||
-                          ""
-                        }
-                        type={""}
-                        gif={
-                          pokemon?.sprites?.versions?.["generation-v"]?.[
-                            "black-white"
-                          ]?.animated?.front_default || ""
-                        }
-                        edge={""}
-                        backgroundCard={""}
-                      />
+                      {pokemonStyle.map((pokemonStyle) => (
+                        <PokemonCard
+                          id={pokemon.id}
+                          name={pokemon?.types?.["0"]?.["type"]?.name }
+                          img={
+                            pokemon.sprites?.other?.dream_world
+                              ?.front_default ||
+                            pokemon.sprites?.other?.["official-artwork"]
+                              ?.front_default ||
+                            ""
+                          }
+                          type={""}
+                          gif={
+                            pokemon?.sprites?.versions?.["generation-v"]?.[
+                              "black-white"
+                            ]?.animated?.front_default || ""
+                          }
+                          cardEdge={
+                            pokemon?.types?.["0"]?.["type"]?.name === "grass"
+                              ? pokemonStyle.colors.types.grass.edge
+                              : "" ||
+                                pokemon?.types?.["0"]?.["type"]?.name === "fire"
+                              ? pokemonStyle.colors.types.fire.edge
+                              : "" ||
+                                pokemon?.types?.["0"]?.["type"]?.name ===
+                                  "water"
+                              ? pokemonStyle.colors.types.water.edge
+                              : "" ||
+                                pokemon?.types?.["0"]?.["type"]?.name === "bug"
+                              ? pokemonStyle.colors.types.bug.edge
+                              : "" ||
+                                pokemon?.types?.["0"]?.["type"]?.name ===
+                                  "normal"
+                              ? pokemonStyle.colors.types.normal.edge
+                              : "" ||
+                              pokemon?.types?.["0"]?.["type"]?.name === "electric"
+                            ? pokemonStyle.colors.types.electric.edge
+                            : ""
+                          }
+                          cardBackgroundColor={
+                            pokemon?.types?.["0"]?.["type"]?.name === "grass"
+                              ? pokemonStyle.colors.types.grass.backgroundCard
+                              : "" ||
+                                pokemon?.types?.["0"]?.["type"]?.name === "fire"
+                              ? pokemonStyle.colors.types.fire.backgroundCard
+                              : "" ||
+                                pokemon?.types?.["0"]?.["type"]?.name ===
+                                  "water"
+                              ? pokemonStyle.colors.types.water.backgroundCard
+                              : "" ||
+                                pokemon?.types?.["0"]?.["type"]?.name === "bug"
+                              ? pokemonStyle.colors.types.bug.backgroundCard
+                              : "" ||
+                                pokemon?.types?.["0"]?.["type"]?.name ===
+                                  "normal"
+                              ? pokemonStyle.colors.types.normal.backgroundCard
+                              : "" ||
+                                pokemon?.types?.["0"]?.["type"]?.name ===
+                                  ["electric" || "eletric"]
+                              ? pokemonStyle.colors.types.electric.backgroundCard
+                              : ""
+                          }
+                        />
+                      ))}
                     </div>
                   </div>
                 ))}
