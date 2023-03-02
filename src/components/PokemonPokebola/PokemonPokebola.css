@@ -1,5 +1,5 @@
 .pokebola {
-  --clr:#f40103
+  --clr:#3DABD0
 }
 
 .card {
@@ -56,6 +56,8 @@
   border-radius: 20px;
   background: var(--clr);
   box-shadow: none;
+  border: 5px solid #B0F3FF;
+
 }
 
 .card .pokebola .logo {

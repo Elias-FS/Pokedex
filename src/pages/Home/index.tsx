@@ -178,7 +178,7 @@ export const Home = () => {
   console.log(pokemonList);
 
   return (
-    <>
+    <div className="background-home">
       <div className="header">
         <img
           width="450px"
@@ -512,6 +512,6 @@ export const Home = () => {
       <div className="footer">
         <h2>Footer</h2>
       </div>
-    </>
+    </div>
   );
 };
