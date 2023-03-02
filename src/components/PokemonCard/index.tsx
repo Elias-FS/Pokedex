@@ -31,7 +31,7 @@ export const PokemonCard: FC<pokemonData> = ({
             <img className="img-type" src={gif} alt={`gif-pokemon-${img}`} />
           </div>
           <div className="item4">
-            <img className="img-type" src="/img/typeFire.png" alt="" />
+            <img className="img-type" src={type} alt="" />
           </div>
           <div className="item3">
             <img className="img-pokemon" src={img} alt={`pokemon-${img}`} />
