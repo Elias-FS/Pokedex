@@ -30,6 +30,7 @@ export const PokemonPokebola: FC<pokemon> = ({
   Special_Defense,
   Speed,
 }) => {
+  
   return (
     <div className="card">
       <div className="pokebola">
@@ -45,15 +46,14 @@ export const PokemonPokebola: FC<pokemon> = ({
       </div>
       <div className="content">
         <h2>{name}</h2>
-        <h3>Pokémon type {type}</h3>
-        <h4>Stats:</h4>
+        <h3>Pokémon tipo {type}</h3>
+        <h4>Status:</h4>
         <p>HP: {HP}</p>
         <p>Attack: {Attack}</p>
         <p>Defense: {Defense}</p>
         <p>Special-Attack: {Special_Attack}</p>
         <p>Special-Defense: {Special_Defense}</p>
         <p>Speed: {Speed}</p>
-        <a href="#">Saiba mais.</a>
         <p>#{id}</p>
       </div>
       <img src={img} alt={`pokemon-${img}`} className="pokemon_img" />

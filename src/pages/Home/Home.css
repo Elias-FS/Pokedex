@@ -8,7 +8,8 @@
 }
 
 .background-home{
-  background: orange;
+  background: #FDD046;
+
 }
 
 .container-pokebola {
@@ -32,7 +33,10 @@
 /* Style the top navigation bar */
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: #da2c33;
+  border-bottom: 2px solid #000;
+  border-top: 2px solid #000;
+  
 }
 
 /* Style the topnav links */
@@ -43,6 +47,8 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 /* Change color on hover */
@@ -62,8 +68,7 @@
 .card2 {
   background-color: white;
   padding: 20px;
-  background: orange;
-
+  background: #ECEFF1;
 }
 
 /* Clear floats after the columns */
@@ -78,7 +83,6 @@
   padding: 20px;
   text-align: center;
   background: #ddd;
-  margin-top: 20px;
 }
 
 .search-Pokemon {
@@ -86,6 +90,7 @@
   border: 2px solid #000;
   margin-bottom: 10px;
   width: 80%;
+  text-align: center;
 }
 
 /* Float four columns side by side */
