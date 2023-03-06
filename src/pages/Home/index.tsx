@@ -197,17 +197,38 @@ export const Home = () => {
       <div className="row">
         <div className="leftcolumn">
           <div className="card2">
-            <h2>Digite o nome de um pokémon ou seu ID para capturá-lo:</h2>
-            <h5>
+            <h2>
               Clique ou passe o mouse na pokébola para visualizar o pokémon
               capturado.
-            </h5>
-            <input
-              className="search-Pokemon"
-              type="text"
-              onChange={(event) => setSearchPokemon(event.target.value)}
+            </h2>
+            <img
+              src={
+                getLoadablePokemon?.contents?.sprites?.versions?.[
+                  "generation-v"
+                ]?.["black-white"]?.animated?.front_default
+              }
+              alt=""
             />
-            <button onClick={() => setPokemon(searchPokemon)}>Procurar</button>
+            <div className="search-box">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setPokemon(searchPokemon);
+                }}
+                action=""
+              >
+                <input
+                  type="text"
+                  placeholder="Digite Nome ou ID de um pokémon"
+                  onChange={(event) => setSearchPokemon(event.target.value)}
+                />
+                <input
+                  type="submit"
+                  value="Capturar Pokemon"
+                  onChange={(event) => setSearchPokemon(event.target.value)}
+                />
+              </form>
+            </div>
             {getLoadablePokemon?.state === "loading" && (
               <div>Capturado pokémon...</div>
             )}
@@ -262,8 +283,13 @@ export const Home = () => {
             </div>
           </div>
           <div className="card2">
-            <h2>Lista de Pokémons</h2>
-            <h5>{pokemonCount} Pokémons</h5>
+            <div className="pokemon-count">
+              <h2>Lista de Pokémons</h2>
+              <h5>
+                <img src="/favicon.png" alt="" />
+                {pokemonCount} Pokémons
+              </h5>
+            </div>
             <div className="container-card">
               <div className="row">
                 {pokemonList.map((pokemon) => (
