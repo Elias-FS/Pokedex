@@ -10,8 +10,8 @@ export const NotFound = () => {
           className="img-404"
         />
       </div>
-      <div>
-        <button>adasd</button>
+      <div className="container-button">
+        <a href="/">Voltar</a>
       </div>
     </>
   );

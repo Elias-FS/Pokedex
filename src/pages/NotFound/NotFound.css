@@ -2,5 +2,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 70vh;
+}
+
+.container-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-button a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: absolute;
+  border-radius: 25px;
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  background: #da2c33;
+  color: #fff;
+  text-align: center;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  border: 2px solid #000;
+}
+
+@media screen and (max-width: 540px) {
+  .img-404 {
+    width: 250px;
+  }
 }

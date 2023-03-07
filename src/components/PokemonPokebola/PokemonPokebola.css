@@ -372,3 +372,81 @@
     height: 30px;
   }
 }
+
+@media screen and (max-width: 300px) {
+  .card {
+    position: relative;
+    width: 325px;
+    height: 325px;
+  }
+  
+  .card:hover {
+    width: 320px;
+  }
+  
+  .card .pokebola {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .card .pokebola::before {
+    width: 200px;
+    height: 200px;
+    margin-left: 10px;
+  }
+  
+  
+  .card:hover .pokebola::before {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .card .pokebola .logo {
+    width: 250px;
+    margin-bottom: 100px;
+  }
+  
+  .card:hover .pokemon_img {
+    left: 80%;
+    height: 100px;
+  }
+  
+  .card .content {
+    width: 60%;
+    left: 10%;
+    padding: 1px 1px 1px 20px;
+
+  }
+  
+  .card .content h2 {
+    color: #000;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    line-height: 1em;
+  }
+  
+  .card .content p {
+    margin-top: 0px;
+    color: #fff;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+  }
+  
+  .circle {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 110px;
+  }
+  
+  .circle1 {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 110px;
+  }
+  
+  .circle2 {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 110px;
+  }
+}

@@ -25,6 +25,7 @@ import {
   selectorGetPokemons,
 } from "../../recoil/selectors";
 import { PokemonCard } from "../../components/PokemonCard";
+import NavBar from "../../components/navbar";
 
 // ::
 export const Home = () => {
@@ -185,23 +186,7 @@ export const Home = () => {
           alt="logo_pokemon"
         />
       </div>
-
-      <ul className="topnav">
-        <li>
-          <a className="active" href="#">
-            Inicio
-          </a>
-        </li>
-        <li>
-          <a href="#pokebola">Pokébola</a>
-        </li>
-        <li>
-          <a href="#pokemonList">Lista de Pokémons</a>
-        </li>
-        <li className="right">
-          <a href="https://www.linkedin.com/in/elias-fausto-de-souza/">Sobre mim</a>
-        </li>
-      </ul>
+      <NavBar />
 
       <div className="row">
         <div>
