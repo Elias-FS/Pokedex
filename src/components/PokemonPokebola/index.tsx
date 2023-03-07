@@ -34,7 +34,7 @@ export const PokemonPokebola: FC<pokemon> = ({
     <div className="card">
       <div className="pokebola">
         <img
-          src={"/img/pokémon_logo.svg.png"}
+          src={"/img/pokemon-logo.png"}
           alt="logo_pokemon"
           className="logo"
         />

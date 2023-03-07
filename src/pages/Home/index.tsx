@@ -181,7 +181,7 @@ export const Home = () => {
     <div className="background-home">
       <div className="header">
         <img
-          src={"/img/pokémon_logo.svg.png"}
+          src={"/img/pokemon-logo.png"}
           alt="logo_pokemon"
         />
       </div>
