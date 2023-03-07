@@ -30,7 +30,6 @@ export const PokemonPokebola: FC<pokemon> = ({
   Special_Defense,
   Speed,
 }) => {
-  
   return (
     <div className="card">
       <div className="pokebola">
@@ -45,6 +44,14 @@ export const PokemonPokebola: FC<pokemon> = ({
         <div className="circle2"></div>
       </div>
       <div className="content">
+        <div className="leds">
+          <div className="circle6"></div>
+          <div className="circle8"></div>
+          <div className="circle7"></div>
+          <div className="circle3"></div>
+          <div className="circle4"></div>
+          <div className="circle5"></div>
+        </div>
         <h2>{name}</h2>
         <h3>Pokémon tipo {type}</h3>
         <h4>Status:</h4>

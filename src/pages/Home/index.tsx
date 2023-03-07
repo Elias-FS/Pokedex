@@ -181,34 +181,35 @@ export const Home = () => {
     <div className="background-home">
       <div className="header">
         <img
-          width="450px"
           src={"/img/pokémon_logo.svg.png"}
           alt="logo_pokemon"
-          className="logo"
         />
       </div>
 
-      <div className="topnav">
-        <a href="#">Home</a>
-        <a href="#">Sobre mim</a>
-        <a href="#">Tecnologias utilizadas</a>
-      </div>
+      <ul className="topnav">
+        <li>
+          <a className="active" href="#">
+            Inicio
+          </a>
+        </li>
+        <li>
+          <a href="#pokebola">Pokébola</a>
+        </li>
+        <li>
+          <a href="#pokemonList">Lista de Pokémons</a>
+        </li>
+        <li className="right">
+          <a href="https://www.linkedin.com/in/elias-fausto-de-souza/">Sobre mim</a>
+        </li>
+      </ul>
 
       <div className="row">
-        <div className="leftcolumn">
-          <div className="card2">
+        <div>
+          <div id="pokebola" className="card2">
             <h2>
               Clique ou passe o mouse na pokébola para visualizar o pokémon
               capturado.
             </h2>
-            <img
-              src={
-                getLoadablePokemon?.contents?.sprites?.versions?.[
-                  "generation-v"
-                ]?.["black-white"]?.animated?.front_default
-              }
-              alt=""
-            />
             <div className="search-box">
               <form
                 onSubmit={(e) => {
@@ -282,7 +283,7 @@ export const Home = () => {
               />
             </div>
           </div>
-          <div className="card2">
+          <div id="pokemonList" className="card2">
             <div className="pokemon-count">
               <h2>Lista de Pokémons</h2>
               <h5>
@@ -523,6 +524,7 @@ export const Home = () => {
             <button
               disabled={disabledFetchMorePokemons}
               onClick={() => setPokemonsOffset(pokemonsOffset + 10)}
+              className="loadingMorePokemons"
             >
               Carregar mais
             </button>
@@ -533,10 +535,6 @@ export const Home = () => {
             )}
           </div>
         </div>
-      </div>
-
-      <div className="footer">
-        <h2>Footer</h2>
       </div>
     </div>
   );

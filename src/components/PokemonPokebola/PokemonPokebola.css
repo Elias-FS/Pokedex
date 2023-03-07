@@ -1,5 +1,5 @@
 .pokebola {
-  --clr:#3DABD0
+  --clr:#FEF3C7
 }
 
 .card {
@@ -44,7 +44,7 @@
 	box-shadow: inset -25px -15px 40px rgba(0,0,0,.3);
   background: linear-gradient(#da2c33 40.5%, #000 41.9% ,#565658 40%, #565658 55%, #000 57% , #fff 40%);
   border: 5px solid ;
-  filter: drop-shadow(0 0 10px var(--clr)) drop-shadow(0 0 60px var(--clr));
+  filter: drop-shadow(0 0 8px var(--clr)) drop-shadow(0 0 25px var(--clr));
   transition: 0.5s, background 0.5s;
   transition-delay: 0.75s, 1s;
   animation: spin 12s linear infinite;
@@ -57,13 +57,13 @@
   width: 100%;
   height: 100%;
   border-radius: 20px;
-  background: linear-gradient(to right, #3DABD0 , #0F233E);
+  background: #DC092C;
   animation: change-background 1.42s linear paused;
   animation-play-state: running ,paused;
   background-size: cover;
   background-position: center;
   box-shadow: none;
-  border: 5px solid #B0F3FF;
+  border: 5px solid #000;
 }
 
 .card .pokebola .logo {
@@ -203,6 +203,85 @@
   animation: spin 12s linear infinite;
 }
 
+.circle3 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 4px solid;
+  border-radius: 50%;
+  margin-left: 50px;
+  background-color: #C80828;
+  box-shadow: 3px 4px 4px rgba(0,0,0,.4);
+}
+
+.circle4 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 4px solid;
+  border-radius: 50%;
+  margin-left: 80px;
+  background-color: #FBE461;
+  box-shadow: 3px 4px 4px rgba(0,0,0,.4);
+}
+
+.circle5 {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 4px solid;
+  border-radius: 50%;
+  margin-left: 110px;
+  background-color: #306E44;
+  box-shadow: 3px 4px 4px rgba(0,0,0,.4);
+}
+
+.circle6 {
+  position: absolute;
+  margin-bottom: 20px;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #DDDEDE;
+  border-radius: 50%;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  background-color: #176A9F;
+  box-shadow: 3px 4px 4px rgba(0,0,0,.4);
+}
+
+.circle7 {
+  position: absolute;
+  margin-bottom: 20px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-left: 11px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 2px #fff
+}
+
+.circle8 {
+  position: absolute;
+  margin-bottom: 20px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  margin-left: 9px;
+  margin-top: 9px;
+  margin-bottom: 10px;
+  background-color: #28ABFD;
+  box-shadow: -2px -1px 1px #28ABFD;
+}
+
+.leds {
+  margin-bottom: 17px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+}
+
 /* Spin Animation */
 @keyframes spin {
   from {
@@ -219,4 +298,77 @@
   } to {
     background: #fff;  }
 }
+
   
+@media screen and (max-width: 540px) {
+  .card {
+    position: relative;
+    width: 280px;
+    height: 280px;
+  }
+  
+  .card:hover {
+    width: 320px;
+  }
+  
+  .card .pokebola {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .card .pokebola::before {
+    width: 280px;
+    height: 280px;
+  }
+  
+  
+  .card:hover .pokebola::before {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .card .pokebola .logo {
+    width: 250px;
+  }
+  
+  .card:hover .pokemon_img {
+    left: 80%;
+    height: 150px;
+  }
+  
+  .card .content {
+    width: 60%;
+    left: 20%;
+    padding: 10px 10px 10px 20px;
+
+  }
+  
+  .card .content h2 {
+    color: #000;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    line-height: 1em;
+  }
+  
+  .card .content p {
+    margin-top: 0px;
+    color: #fff;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+  }
+  
+  .circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .circle1 {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .circle2 {
+    width: 30px;
+    height: 30px;
+  }
+}
