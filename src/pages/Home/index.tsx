@@ -26,6 +26,7 @@ import {
 } from "../../recoil/selectors";
 import { PokemonCard } from "../../components/PokemonCard";
 import NavBar from "../../components/navbar";
+import { IsLoading } from "../../components/Loading";
 
 // ::
 export const Home = () => {
@@ -215,8 +216,9 @@ export const Home = () => {
                 />
               </form>
             </div>
+            
             {getLoadablePokemon?.state === "loading" && (
-              <div>Capturado pokémon...</div>
+              <IsLoading text={"Capturando Pokémon..."} />
             )}
             {getLoadablePokemon?.state === "hasValue" &&
               getLoadablePokemon?.contents !== undefined && (
@@ -506,6 +508,9 @@ export const Home = () => {
                 ))}
               </div>
             </div>
+            {getLoadablePokemons?.state === "loading" && (
+              <IsLoading text={"Carregando Pokémons..."} />
+            )}
             <button
               disabled={disabledFetchMorePokemons}
               onClick={() => setPokemonsOffset(pokemonsOffset + 10)}
@@ -514,10 +519,11 @@ export const Home = () => {
               Carregar mais
             </button>
             {hasFetchPokemonError && (
-              <button onClick={() => retryFethMorePokemon()}>
+              <button className="loadingMorePokemons" onClick={() => retryFethMorePokemon()}>
                 Tentar Novamente
               </button>
             )}
+            
           </div>
         </div>
       </div>
